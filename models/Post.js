@@ -5,11 +5,13 @@ class Post extends Model {}
 
 Post.init(
   {
+    id: {type: DataTypes.INTEGER,
+          autoIncrement: true},
     // With relationship defined in index.js, primary key (id) will be created automatically at runtime
     title: DataTypes.STRING,
     body: DataTypes.STRING
     // With relationship defined in index.js, foreign keys will be automatically created at runtime
-
+  
   },
   {
     sequelize,
