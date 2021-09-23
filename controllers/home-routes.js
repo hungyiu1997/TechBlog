@@ -20,9 +20,9 @@ router.get('/', async (req, res) => {
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: Post,
+      include: [Post],
     }
-      // TODO: YOUR CODE HERE
+
     );
 
     if (postData) {
