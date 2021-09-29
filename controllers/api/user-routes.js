@@ -5,12 +5,9 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
   console.log('/');
   try {
-    const newUser = await User.create(
-      req.body
+    const newUser = await User.create(req.body);
       // TODO: SET USERNAME TO USERNAME SENT IN REQUEST
-
-      // TOD: SET PASSWORD TO PASSWORD SENT IN REQUEST
-    );
+      // TODO: SET PASSWORD TO PASSWORD SENT IN REQUEST
 
     req.session.save(() => {
       req.session.user_id = newUser.id;
@@ -30,6 +27,7 @@ router.post('/', async (req, res) => {
 
 // URL: /api/user/login
 router.post('/login', async (req, res) => {
+  console.log('GET /api/user/login');
   try {
     const user = await User.findOne({
       where: {
@@ -64,6 +62,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
+  console.log('GET /logout');
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
