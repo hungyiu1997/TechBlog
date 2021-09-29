@@ -3,6 +3,7 @@ const { Post } = require('../models/');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
+  console.log('GET /');
   try {
     const postData = await Post.findAll({
       where: {
@@ -23,12 +24,14 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/new', withAuth, (req, res) => {
+  console.log('GET /new');
   res.render('new-post', {
     layout: 'dashboard',
   });
 });
 
 router.get('/edit/:id', withAuth, async (req, res) => {
+  console.log('GET /edit/:id');
   try {
     const postData = await Post.findByPk(req.params.id);
 

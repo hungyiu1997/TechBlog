@@ -4,6 +4,7 @@ const withAuth = require('../../utils/auth');
 
 // URL: /api/comment
 router.post('/', withAuth, async (req, res) => {
+  console.log("GET /");
   try {
     const newComment = await Comment.create({
       // TODO: COMMENT BODY IN REQUEST USING SPREAD

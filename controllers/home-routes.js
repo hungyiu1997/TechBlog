@@ -3,6 +3,7 @@ const { Post, Comment, User } = require('../models/');
 
 // get all posts for homepage
 router.get('/', async (req, res) => {
+  console.log("GET /");
   try {
     const postData = await Post.findAll({
       include: [User],
@@ -10,7 +11,7 @@ router.get('/', async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render('all-posts', { posts });
+    res.render('all-posts', { posts, loggedIn: true });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -18,6 +19,7 @@ router.get('/', async (req, res) => {
 
 // get single post
 router.get('/post/:id', async (req, res) => {
+  console.log("GET /post/:id");
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [Post],
@@ -38,6 +40,7 @@ router.get('/post/:id', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  console.log("GET /login");
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -47,6 +50,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
+  console.log("GET /signup");
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
