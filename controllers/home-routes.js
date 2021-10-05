@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 
     res.render('all-posts', { posts, loggedIn: true });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -22,7 +23,7 @@ router.get('/post/:id', async (req, res) => {
   console.log("GET /post/:id");
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [Post],
+      include: [User],
     }
 
     );
@@ -35,6 +36,7 @@ router.get('/post/:id', async (req, res) => {
       res.status(404).end();
     }
   } catch (err) {
+    console.log("GET /post/:id", err);
     res.status(500).json(err);
   }
 });

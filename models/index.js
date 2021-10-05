@@ -11,39 +11,39 @@ const Comment = require('./Comment');
 // Establish many-to-one relationship with Post
 // Optional: remove the following statement to simplify the code
 User.hasMany(Post, {
-  foreignKey: 'userId',
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
 // Establish one-to-many relastionship with User
 Post.belongsTo(User, {
-  foreignKey: 'userId',
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
 // Establish many-to-one relationship with Comment
 // Optional: remove the following statement to simplify the code
 User.hasMany(Comment, {
-  foreignKey: 'userId',
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
 // Establish many-to-one relationship with User
 Comment.belongsTo(User, {
-  foreignKey: 'userId',
+  foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
 // Establish one-to-many relationship with Comment
 Post.hasMany(Comment, {
-  foreignKey: 'postId',
+  foreignKey: 'post_id',
   onDelete: 'CASCADE'
 });
 
 // Establish one-to-many relationship with Post
 // Optional: remove the following statement to simplify the code
 Comment.belongsTo(Post, {
-  foreignKey: 'postId',
+  foreignKey: 'post_id',
   onDelete: 'CASCADE'
 });
 

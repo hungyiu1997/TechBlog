@@ -3,7 +3,7 @@ const { Post } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
-  console.log("GET /");
+  console.log("POST /");
   const body = req.body;
 
   try {
@@ -15,6 +15,7 @@ router.post('/', withAuth, async (req, res) => {
       // TODO: SET USERID userId TO LOGGEDIN USERID
 
     });
+    console.log(newPost);
     res.json(newPost);
   } catch (err) {
     res.status(500).json(err);
@@ -22,7 +23,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 router.put('/:id', withAuth, async (req, res) => {
-  console.log('GET /:id');
+  console.log('PUT /:id');
   try {
     const [affectedRows] = await Post.update(req.body, {
       // TODO: SET ID TO ID PARAMETER INSIDE WHERE CLAUSE CONDITION FIELD
@@ -43,7 +44,7 @@ router.put('/:id', withAuth, async (req, res) => {
 });
 
 router.delete('/:id', withAuth, async (req, res) => {
-  console.log('GET /:id');
+  console.log('DELETE /:id');
   try {
     const [affectedRows] = Post.destroy({
       // TODO: SET ID TO ID PARAMETER INSIDE WHERE CLAUSE CONDITION FIELD
